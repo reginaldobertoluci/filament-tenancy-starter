@@ -29,8 +29,10 @@ use Stancl\Tenancy\Tenancy;
 
 class TenantAdminPanelProvider extends PanelProvider
 {
+
     public function panel(Panel $panel): Panel
     {
+        
         return $panel
             ->default()
             ->id('tenant-admin')
@@ -47,6 +49,9 @@ class TenantAdminPanelProvider extends PanelProvider
                 Widgets\AccountWidget::class,
                 Widgets\FilamentInfoWidget::class,
             ])
+            ->plugin(
+                \Hasnayeen\Themes\ThemesPlugin::make()
+            )
 //            ->domains(fn() => tenant()?->domains()->pluck('domain'))
             ->middleware([
                 EncryptCookies::class,
@@ -58,6 +63,7 @@ class TenantAdminPanelProvider extends PanelProvider
                 SubstituteBindings::class,
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
+                \Hasnayeen\Themes\Http\Middleware\SetTheme::class
             ])->middleware([
                 'universal',
                 TenancyServiceProvider::TENANCY_IDENTIFICATION,
@@ -65,6 +71,6 @@ class TenantAdminPanelProvider extends PanelProvider
             ], isPersistent: true)
             ->authMiddleware([
                 Authenticate::class,
-            ])->plugin(CorePlugin::make());
+            ]);//->plugin(CorePlugin::make());
     }
 }

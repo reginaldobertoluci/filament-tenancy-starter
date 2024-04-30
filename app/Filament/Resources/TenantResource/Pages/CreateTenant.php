@@ -5,6 +5,7 @@ namespace App\Filament\Resources\TenantResource\Pages;
 use App\Filament\Resources\TenantResource;
 use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
+use Illuminate\Support\Facades\Redis;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Core\app\Models\Tenant;
 use Throwable;

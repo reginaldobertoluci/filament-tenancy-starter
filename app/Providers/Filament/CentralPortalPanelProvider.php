@@ -50,7 +50,11 @@ class CentralPortalPanelProvider extends PanelProvider
                 SubstituteBindings::class,
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
+                \Hasnayeen\Themes\Http\Middleware\SetTheme::class
             ])
+            ->plugin(
+                \Hasnayeen\Themes\ThemesPlugin::make()
+            )
             ->persistentMiddleware(['universal'])
             ->domains(config('tenancy.central_domains'))
             ->authMiddleware([

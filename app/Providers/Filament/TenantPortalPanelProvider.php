@@ -29,6 +29,7 @@ class TenantPortalPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
+        
         return $panel
             ->id('tenantPortal')
             ->path('')
@@ -40,6 +41,9 @@ class TenantPortalPanelProvider extends PanelProvider
             ->pages([
                 Pages\Dashboard::class,
             ])
+            ->plugin(
+                \Hasnayeen\Themes\ThemesPlugin::make()
+            )
             ->discoverWidgets(in: app_path('Filament/TenantPortal/Widgets'), for: 'App\\Filament\\TenantPortal\\Widgets')
             ->widgets([
                 Widgets\AccountWidget::class,
@@ -55,6 +59,7 @@ class TenantPortalPanelProvider extends PanelProvider
                 SubstituteBindings::class,
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
+                \Hasnayeen\Themes\Http\Middleware\SetTheme::class
             ])->middleware([
                 'universal',
                 TenancyServiceProvider::TENANCY_IDENTIFICATION,
@@ -63,10 +68,10 @@ class TenantPortalPanelProvider extends PanelProvider
 //            ->domains(fn() => tenant()?->domains()->pluck('domain'))
             ->authMiddleware([
                 Authenticate::class,
-            ])->plugin(CorePlugin::make()
-                ->registerResources(false)
-                ->registerPages(false)
-                ->registerWidgets(false)
-            );
+            ]);//->plugin(CorePlugin::make()
+                //->registerResources(false)
+                //->registerPages(false)
+                //->registerWidgets(false)
+            //);
     }
 }

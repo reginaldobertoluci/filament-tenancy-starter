@@ -44,7 +44,9 @@ class TenantResource extends Resource
                         ->prefix('https://')
                         ->suffix(".".request()->getHost())
                     ,
-                    Forms\Components\TextInput::make('email')->email(),
+                    Forms\Components\TextInput::make('email')
+                    ->required()
+                    ->email(),
                     Forms\Components\TextInput::make('phone')->tel(),
                     Forms\Components\TextInput::make('mobile')->tel(),
                     Forms\Components\ColorPicker::make('primary_color'),

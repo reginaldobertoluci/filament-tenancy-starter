@@ -15,7 +15,7 @@ class Tenant extends \Stancl\Tenancy\Database\Models\Tenant implements TenantWit
         return [
             'id',
             'name',
-            'email_address',
+            'email',
             'phone',
             'mobile',
             'address',
